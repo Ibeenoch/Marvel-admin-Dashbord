@@ -56,7 +56,7 @@ const NavBar = () => {
 
     
   return (
-    <div >
+    <div className='fixed top-0 w-[100vw] sm:pr-4 z-40 bg-opacity-100'>
         {/* deskop  */}
         <div className='bg-gradient-to-r from-[#1079c1] to-[#3018d2] w-full  px-4 py-2'>
             <div className='hidden sm:flex justify-between items-center gap-1'>

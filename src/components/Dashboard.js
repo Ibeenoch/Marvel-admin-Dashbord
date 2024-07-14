@@ -520,7 +520,7 @@ const Dashboard = () => {
         <NavBar />
 
         {/* first components */}
-        <div className='grid grid-cols-1 sm:grid-cols-4 md:grid-cols-4 gap-2 p-3'>
+        <div className='mt-[85px] sm:mt-[50px] grid grid-cols-1 sm:grid-cols-4 md:grid-cols-4 gap-2 p-3'>
             {/* first row  */}
             <div className='rounded-md bg-[#0c1a32] p-2'>
                 <p className='text-center text-gray-300 text-xs'>Marketing</p>
