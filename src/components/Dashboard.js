@@ -1,11 +1,19 @@
 import React from 'react'
-import { AreaChart, Area, XAxis, YAxis, CartesianAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, BarChart, Bar, PieChart, Pie, Cell } from 'recharts'
+import { AreaChart, Area, XAxis, YAxis, CartesianAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, Label, Rectangle, ReferenceLine } from 'recharts'
 import { data } from './data';
 import { ReactComponent as DownArrowLogo } from '../asset/arrowdown.svg'
 import { ReactComponent as RightArrowLogo } from '../asset/arrow-right-thick-svgrepo-com.svg'
 import { ReactComponent as UpArrowLogo } from '../asset/arrow-up-thick-svgrepo-com.svg'
-import { ReactComponent as LeftArrowLogo } from '../asset/arrow-left-thick-svgrepo-com.svg'
+import { ReactComponent as ProjectLogo } from '../asset/project_brief_icon_150113.svg';
+import { ReactComponent as TrophyLogo } from '../asset/trophy.svg';
+import { ReactComponent as RegistaryLogo } from '../asset/register_editor.svg';
+import { ReactComponent as IdeaLogo } from '../asset/idea.svg';
+import { ReactComponent as BadgeLogo } from '../asset/badge.svg';
+import { ReactComponent as ArtLogo } from '../asset/idea.svg';
+import { ReactComponent as ArrowRightLogo } from '../asset/arrow_right.svg';
+import { ReactComponent as BeerCupLogo } from '../asset/alcohol-beer-beverage-drink-foam-glass-svgrepo-com.svg';
 import NavBar from './NavBar';
+import './dashboard.css';
 
 
 const Dashboard = () => {
@@ -361,8 +369,150 @@ const Dashboard = () => {
         { name: 'B', value: 40, color: '#cac2c6'},
     ];
 
-    const RADIAN = Math.PI /180, cx = 150, cy=200, iR=50, oR=100, value=50 ;
+    const RADIAN = Math.PI /180, cx = 150, cy=120, iR=50, oR=100, value=50 ;
+
+    const dataBarChartTwo = [
+        {
+            name: 'Page A',
+            uv: 449,
+            pv: 244,
+        },
+        {
+            name: 'Page B',
+            uv: -349,
+            pv: 187,
+        },
+        {
+            name: 'Page C',
+            uv: -549,
+            pv: -257,
+        },
+        {
+            name: 'Page D',
+            uv: 239,
+            pv: 358,
+        },
+        {
+            name: 'Page E',
+            uv: -189,
+            pv: 463,
+        },
+        {
+            name: 'Page F',
+            uv: 239,
+            pv: 388,
+        },
+        {
+            name: 'Page G',
+            uv: 349,
+            pv: 431,
+        },
+     
+    ];
+
+    const dataLineNine = [
+        {
+          name: 'QTR 1',
+          uv: 4000,
+          pv: 2400,
+          amt: 2400,
+        },
+        {
+          name: '',
+          uv: 3000,
+          pv: 1398,
+          amt: 2210,
+        },
+        {
+          name: 'QTR 2',
+          uv: 2000,
+          pv: 9800,
+          amt: 2290,
+        },
+        {
+          name: '',
+          uv: 2780,
+          pv: 3908,
+          amt: 2000,
+        },
+        {
+          name: 'QTR 3',
+          uv: 1890,
+          pv: 4800,
+          amt: 2181,
+        },
+        {
+          name: '',
+          uv: 2390,
+          pv: 3800,
+          amt: 2500,
+        },
+        {
+          name: 'QTR 4',
+          uv: 3490,
+          pv: 4300,
+          amt: 2100,
+        },
+      ];
+
+    const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
+    const getPath = (x, y, width, height) => {
+        return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
+        ${x + width / 2}, ${y}
+        C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
+        Z`;
+      };
+      
+      const TriangleBar = (props) => {
+        const { fill, x, y, width, height } = props;
+      
+        return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
+      };
     
+      const dataAreaTen = [
+        {
+          name: 'Page A',
+          uv: 4000,
+          pv: 2400,
+          amt: 2400,
+        },
+        {
+          name: 'Page B',
+          uv: 3000,
+          pv: 1398,
+          amt: 2210,
+        },
+        {
+          name: 'Page C',
+          uv: 2000,
+          pv: 9800,
+          amt: 2290,
+        },
+        {
+          name: 'Page D',
+          uv: 2780,
+          pv: 3908,
+          amt: 2000,
+        },
+        {
+          name: 'Page E',
+          uv: 1890,
+          pv: 4800,
+          amt: 2181,
+        },
+        {
+          name: 'Page F',
+          uv: 2390,
+          pv: 3800,
+          amt: 2500,
+        },
+        {
+          name: 'Page G',
+          uv: 3490,
+          pv: 4300,
+          amt: 2100,
+        },
+      ];
 
   return (
     <div className='bg-[#20304c] h-min'>
@@ -370,7 +520,7 @@ const Dashboard = () => {
         <NavBar />
 
         {/* first components */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 p-3'>
+        <div className='grid grid-cols-1 sm:grid-cols-4 md:grid-cols-4 gap-2 p-3'>
             {/* first row  */}
             <div className='rounded-md bg-[#0c1a32] p-2'>
                 <p className='text-center text-gray-300 text-xs'>Marketing</p>
@@ -542,7 +692,7 @@ const Dashboard = () => {
 
               {/* six row  */}
             <div className='sm:col-span-3 rounded-md bg-[#0c1a32] p-0'>
-                <div className='flex flex-col sm:grid grid-cols-1 grid-cols-3'>
+                <div className='flex flex-col sm:grid grid-cols-3'>
                <div className='sm:col-span-1 border-r border-r-gray-400 border-opacity-50 p-2'>
                     <h2 className='text-right text-white border-b border-b-gray-600 border-opacity-50 p-4'>Sales Overview</h2>
                     <div className='flex justify-between p-2'>
@@ -618,8 +768,8 @@ const Dashboard = () => {
                             padding: '10px'
                         }}
                         />
-                        <Bar dataKey="offline" barSize={25} stackId='a' fill='red' />
-                        <Bar dataKey="online" barSize={25} stackId='a' fill='blue' />
+                        <Bar dataKey="offline" barSize={25} stackId='a' fill='#81071d' />
+                        <Bar dataKey="online" barSize={25} stackId='a' fill='green' />
                         </BarChart>
                     </ResponsiveContainer>
                </div>
@@ -638,9 +788,10 @@ const Dashboard = () => {
                     </div>
                 </div>
                 
-               <div className='flex justify-center'>
-                <PieChart width={400} height={200} margin={{
-                    top: -70,
+               <div className=''>
+                <PieChart width={300} height={200} margin={{
+                    top: 0,
+                    bottom: 0,
                 }} >
                     <Pie
                     dataKey='value'
@@ -661,21 +812,280 @@ const Dashboard = () => {
                                 
                             ))
                         }
-                        
+                        <Label value='61.2%' position='center' style={{ fill: 'white', fontSize:'24px'}} />
                     </Pie>
                 </PieChart>
-                <p className='text-white'>56</p>
+               </div>
+
+               <div className='flex justify-end pt-4 px-4'>
+                    <div className='flex gap-2 items-center'>
+                        <div>
+                            <p className='text-[#45aef0] text-md'>Project Briefing</p>
+                            <p className='text-gray-300 text-sm text-right'>Project Manager</p>
+                        </div>
+
+                        <div className='bg-[#45aef0] p-1 rounded-md'>
+                           <ProjectLogo className='w-8 h-8 stroke-white' />
+                        </div>
+                    </div>
+               </div>
+
+               <div className='flex justify-end p-4'>
+                    <div className='flex gap-2 items-center'>
+                        <div>
+                            <p className='text-[#45aef0] text-md'>Concept Design</p>
+                            <p className='text-gray-300 text-sm text-right'>Art Director</p>
+                        </div>
+
+                        <div className='bg-[#45aef0] p-2 rounded-md'>
+                           <RegistaryLogo className='w-6 h-6 fill-white'  />
+                        </div>
+                    </div>
+               </div>
+
+               <div className='flex justify-end p-4'>
+                    <div className='flex gap-2 items-center'>
+                        <div>
+                            <p className='text-[#45aef0] text-md'>Functional Logics</p>
+                            <p className='text-gray-300 text-sm text-right'>Lead Developer</p>
+                        </div>
+
+                        <div className='bg-[#45aef0] p-2 rounded-md'>
+                        <ArtLogo className='w-6 h-6 fill-white' /> 
+                        </div>
+                    </div>
                </div>
             </div>
+            
+             {/* eighth row  */}
+             <div  className='sm:col-span-3 rounded-md p-2'>
+                <div className='sm:grid grid-cols-2'>
+                    <div className='flex flex-col sm:block'>
+                        {/* 1st sub container  */}
+                        <div className='mb-2 bg-[#0c1a32]'>
+                        <h2 className='text-right text-lg px-4 pt-4 text-gray-300'>Production this Year</h2> 
+                        <div className='flex justify-between px-4 pb-4'>
+                            <div className='flex items-center'>
+                                <UpArrowLogo className='w-3 h-3 fill-[#45aef0]' />
+                                <p className='text-xs text-[#45aef0]'>21.87%</p>
+                            </div>
 
+                            <h1 className='text-lg text-gray-300'>$25,32,240</h1>
+                        </div>
+
+                        <div className='h-[150px]'>
+                    <ResponsiveContainer width='100%' height='100%' >
+                            <BarChart width={150} height={280} data={dataBarChartTwo} stackOffset='sign' margin={{
+                                top: 0,
+                            }}>
+                                <XAxis dataKey='uv' tick={false} />
+                                <YAxis dataKey='pv' tick={false} />
+                                <Tooltip />
+                                <Legend />
+                                <ReferenceLine y={0} stroke='white' />
+                                <Bar dataKey='pv' fill='#8884d8' stackId='stack' />
+                                <Bar dataKey='uv' fill='#82ca9d' stackId='stack' />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                        <div>
+                      </div>
+                        </div> 
+                        {/* 2nd sub container  */}
+                        <div className='mt-2 bg-[#0c1a32]'>
+                        <h2 className='text-right text-lg px-4 pt-4 text-gray-300'>Commission this Year</h2> 
+                        <div className='flex justify-between px-4 pb-4'>
+                            <div className='flex items-center'>
+                                <UpArrowLogo className='w-3 h-3 fill-[#45aef0]' />
+                                <p className='text-xs text-[#45aef0]'>12.52%</p>
+                            </div>
+
+                            <h1 className='text-lg text-gray-300'>$4,82,045</h1>
+                        </div>
+
+                        <div className='h-[150px]'>
+                        <ResponsiveContainer width='100%' height='100%' >
+                            <BarChart width={150} height={280} data={dataBarChartTwo} stackOffset='sign' margin={{
+                                top: 0,
+                            }}>
+                                <XAxis dataKey='uv' tick={false} />
+                                <YAxis dataKey='pv' tick={false} />
+                                <Tooltip />
+                                <Legend />
+                                <ReferenceLine y={0} stroke='white' />
+                                <Bar dataKey='pv' fill='#8884d8' stackId='stack' />
+                                <Bar dataKey='uv' fill='#82ca9d' stackId='nostack' />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                        <div>
+                      </div>
+                        </div> 
+                    </div>
+
+                    <div className='bg-[#0c1a32] p-2 sm:ml-2  mt-2 sm:mt-0'>
+                        <h1 className='p-4 text-right text-gray-300 font-semibold text-lg'>Quarterly Sales Summary</h1>
+                    <div className='h-[350px]'>
+                        <ResponsiveContainer width='100%' height='100%' > 
+                        <BarChart
+                            width={500}
+                            height={300}
+                            data={dataLineNine}
+                            margin={{
+                                top: 20,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                            }}
+                            >
+                            
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Bar dataKey="uv" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                                {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                                ))}
+                            </Bar>
+                        </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                    </div>
+                </div>
+             </div>
+        
+             {/* ninth row  */}
+            <div className='sm:col-span-4'>
+                <div className='grid grid-cols-1 sm:grid-cols-6 gap-2'>
+                    <div className='sm:col-span-2 bg-[#0c1a32]'>
+                        <div className='flex p-4 justify-between'>
+                            <div>
+                                <div className='flex items-center gap-2'>
+                                <UpArrowLogo className='w-4 h-4 stroke-3 fill-cyan-600' />
+                                <p className='text-cyan-300 text-sm'>38.27%</p>
+                                </div>
+                                <div className='flex items-center gap-2'>
+                                <DownArrowLogo className='w-4 h-4 stroke-3 fill-red-600' />
+                                <p className='text-red-600 text-sm'>8.84%</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h2 className='text-gray-300 text-lg text-right'>Monthly Visits</h2>
+                                <p className='text-blue-500 text-xl text-right'>74,84,840</p>
+                            </div>
+                        </div>
+                        <div className='h-[300px] w-full'>
+                            <ResponsiveContainer width='100%' height='100%' >
+                                <AreaChart width={500} height={400} margin={{
+                                    left: -50
+                                }} data={dataAreaTen} >
+                                <XAxis dataKey='name' tick={false} />
+                                <YAxis tick={false} />
+                                <Tooltip />
+                                <Area type='monotone' dataKey='uv' stackId='1' stroke='#8884d8' fill='#8884d8' />
+                                <Area type='monotone' dataKey='pv' stackId='1' stroke='#82ca9d' fill='#82ca9d' />
+                                <Area type='monotone' dataKey='amt' stackId='1' stroke='#ffc658' fill='#ffc658' />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+
+                    <div className='sm:col-span-4 bg-[#0c1a32]'>
+                        <h1 className='text-gray-300 text-right text-lg px-4 pt-4'>Trending items</h1>
+                        <p className='text-gray-300 text-right text-xs px-4 border-b border-b-gray-600'>more than 400+ new members</p>
+                        {/* first row  */}
+                        <div className='flex justify-between p-2 sm:p-4 items-center'>
+                            <div className='bg-cyan-200 rounded-md p-1 sm:p-2'>
+                                <ArrowRightLogo className='w-3 h-3' />
+                            </div>
+                            <p className='text-cyan-400 p-2 font-semibold rounded-md bg-cyan-200 text-[10px] sm:text-sm'>Approved</p>
+                            <p className='text-gray-300 sm:text-xs text-[9px]'>Jerry Millian Yaris</p>
+                            <div className='flex gap-3'>
+                                <div className='max-w-[55px] sm:max-w-xs text-wrap'>
+                                <p className='text-sky-600 text-xs sm:text-sm'>consectetur adipisicing</p> 
+                                <p className='text-gray-300 text-[9px] sm:text-xs'>Kanil, Pharazi, Pinoku Lee</p> 
+                                </div>
+                                <div className='flex justify-center items-center bg-blue-500 rounded-md p-1'>
+                                    <BeerCupLogo className='w-5 h-5 rounded-md' />
+                                </div>
+                            </div>
+                        </div>
+                        {/* second row  */}
+                        <div className='flex justify-between p-2 sm:p-4 items-center'>
+                            <div className='bg-cyan-200 rounded-md p-1 sm:p-2'>
+                                <ArrowRightLogo className='w-3 h-3' />
+                            </div>
+                            <p className='text-yellow-600 font-semibold p-2 font-semibold rounded-md bg-yellow-200 text-[10px] sm:text-sm'>In Progress</p>
+                            <p className='text-gray-300 sm:text-xs text-[9px]'>Jerry Millian Yaris</p>
+                            <div className='flex gap-3'>
+                                <div className='max-w-[55px] sm:max-w-xs text-wrap'>
+                                <p className='text-sky-600 text-xs sm:text-sm'>consectetur adipisicing</p> 
+                                <p className='text-gray-300 text-[9px] sm:text-xs'>Kanil, Pharazi, Pinoku Lee</p> 
+                                </div>
+                                <div className='flex justify-center items-center bg-blue-500 rounded-md p-1'>
+                                    <BadgeLogo className='w-5 h-5 rounded-md' />
+                                </div>
+                            </div>
+                        </div>
+                        {/* third row  */}
+                        <div className='flex justify-between p-2 sm:p-4 items-center'>
+                            <div className='bg-cyan-200 rounded-md p-1 sm:p-2'>
+                                <ArrowRightLogo className='w-3 h-3' />
+                            </div>
+                            <p className='text-green-600 py-2 px-4  rounded-md bg-green-200 text-[10px] sm:text-sm'>Success</p>
+                            <p className='text-gray-300 sm:text-xs text-[9px]'>Jerry Millian Yaris</p>
+                            <div className='flex gap-3'>
+                                <div className='max-w-[55px] sm:max-w-xs text-wrap'>
+                                <p className='text-sky-600 text-xs sm:text-sm'>consectetur adipisicing</p> 
+                                <p className='text-gray-300 text-[9px] sm:text-xs'>Kanil, Pharazi, Pinoku Lee</p> 
+                                </div>
+                                <div className='flex justify-center items-center bg-blue-500 rounded-md p-1'>
+                                    <BeerCupLogo className='w-5 h-5 rounded-md' />
+                                </div>
+                            </div>
+                        </div>
+                        {/* fourth row  */}
+                        <div className='flex justify-between p-2 sm:p-4 items-center'>
+                            <div className='bg-cyan-200 rounded-md p-1 sm:p-2'>
+                                <ArrowRightLogo className='w-3 h-3' />
+                            </div>
+                            <p className='text-red-600 p-2 rounded-md bg-red-200 text-[10px] sm:text-sm'>Rejected</p>
+                            <p className='text-gray-300 sm:text-xs text-[9px]'>Jerry Millian Yaris</p>
+                            <div className='flex gap-3'>
+                                <div className='max-w-[55px] sm:max-w-xs text-wrap'>
+                                <p className='text-sky-600 text-xs sm:text-sm'>consectetur adipisicing</p> 
+                                <p className='text-gray-300 text-[9px] sm:text-xs'>Kanil, Pharazi, Pinoku Lee</p> 
+                                </div>
+                                <div className='flex justify-center items-center bg-blue-500 rounded-md p-1'>
+                                    <TrophyLogo className='w-5 h-5 rounded-md' />
+                                </div>
+                            </div>
+                        </div>
+                        {/* fifth row  */}
+                        <div className='flex justify-between p-2 sm:p-4 items-center'>
+                            <div className='bg-cyan-200 rounded-md p-1 sm:p-2'>
+                                <ArrowRightLogo className='w-3 h-3' />
+                            </div>
+                            <p className='text-cyan-400 p-2 rounded-md bg-cyan-200 text-[10px] sm:text-sm'>Approved</p>
+                            <p className='text-gray-300 sm:text-xs text-[9px]'>Jerry Millian Yaris</p>
+                            <div className='flex gap-3'>
+                                <div className='max-w-[55px] sm:max-w-xs text-wrap'>
+                                <p className='text-sky-600 text-xs sm:text-sm'>consectetur adipisicing</p> 
+                                <p className='text-gray-300 text-[9px] sm:text-xs'>Kanil, Pharazi, Pinoku Lee</p> 
+                                </div>
+                                <div className='flex justify-center items-center bg-blue-500 rounded-md p-1'>
+                                    <BeerCupLogo className='w-5 h-5 rounded-md' />
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
 
         </div>
 
-                {/* second components */}
-        {/* <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 p-2'>
-            
-        </div> */}
-        
+      
     
     </div>
   )
